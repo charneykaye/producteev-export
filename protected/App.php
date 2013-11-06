@@ -24,6 +24,7 @@ class App
     const DATETIME_FORMAT = 'Y-m-d H:i:s';
     const DATETIME_FORMAT_PRETTY = 'Y/m/d - g:i a';
     const DATETIME_FORMAT_PRETTY_DAY = 'F d, Y';
+    const CSV_FILENAME = 'all-producteev-tasks.csv';
 
     /** @var string */
     public $access_token = '';
@@ -38,7 +39,11 @@ class App
     {
         ob_start();
         $this->access_token = Util::requestVar('access_token');
-        $this->taskScraper = new ProducteevTaskScraper($this->access_token);
+        $this->taskScraper = new ProducteevTaskScraper(
+            $this->access_token,
+            __DIR__ . '/..',
+            'all-producteev-tasks.csv'
+        );
     }
 
 }

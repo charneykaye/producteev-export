@@ -19,10 +19,9 @@ if (!$task instanceof ProducteevTask)
         <div class="col-md-1"><?php echo $task->project->title; ?></div>
 
         <!-- Deadline -->
-        <div class="col-md-1 deadline <?php
-        if (strlen($task->deadline_status)) echo 'deadline_status_' . $task->deadline_status;
-        ?>">
-            <?php if ($task->deadline) echo Util::datetime($task->deadline, App::DATETIME_FORMAT_PRETTY_DAY, $task->deadline_timezone); ?>
+        <div
+            class="col-md-1 deadline <?php if (strlen($task->deadline_status)) echo 'deadline_status_' . $task->deadline_status; ?>">
+            <?php echo $task->getDeadline() ?>
         </div>
 
         <!-- Title -->

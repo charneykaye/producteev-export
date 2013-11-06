@@ -36,7 +36,7 @@ class ProducteevTask extends ProducteevObject
     /** @var ProducteevLabel[] */
     public $labels = array(); // array()
 
-    /** @var ProducteevSubtask[]  */
+    /** @var ProducteevSubtask[] */
     public $subtasks = array(); // array()
 
     /** @var int */
@@ -60,12 +60,46 @@ class ProducteevTask extends ProducteevObject
     function __construct($data = null)
     {
         $this->setData($data);
-        $this->extendMany('subtasks','ProducteevSubtask');
-        $this->extendMany('labels','ProducteevLabel');
-        $this->extendOne('creator','ProducteevUser');
-        $this->extendOne('project','ProducteevProject');
-        $this->extendMany('responsibles','ProducteevUser');
-        $this->extendMany('followers','ProducteevUser');
+        $this->extendMany('subtasks', 'ProducteevSubtask');
+        $this->extendMany('labels', 'ProducteevLabel');
+        $this->extendOne('creator', 'ProducteevUser');
+        $this->extendOne('project', 'ProducteevProject');
+        $this->extendMany('responsibles', 'ProducteevUser');
+        $this->extendMany('followers', 'ProducteevUser');
+    }
+
+    /**
+     * @return array
+     */
+    public static function getHeader()
+    {
+        return array(
+            'Status',
+            'Project',
+            'Deadline',
+            'Title',
+            'Subtasks',
+            'Responsibles',
+            'Labels',
+            'Creator',
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return array(
+            $this->isActive() ? 'Active' : 'Done', // Status
+            $this->project->title, // Project
+            $this->getDeadline(), // Deadline
+            $this->title, // Title
+            $this->getSumSubtask(), // Subtasks
+            $this->getSumResponsible(), // Responsibles
+            $this->getSumLabel(), // Labels
+            $this->getCreator(), // Creator
+        );
     }
 
     /**
@@ -89,4 +123,64 @@ class ProducteevTask extends ProducteevObject
     /** Possible Values for status */
     const STATUS_DONE = 0;
     const STATUS_ACTIVE = 1;
+
+    /**
+     * @return null|string
+     */
+    public function getDeadline()
+    {
+        if ($this->deadline)
+            return Util::datetime($this->deadline, App::DATETIME_FORMAT_PRETTY_DAY, $this->deadline_timezone);
+        else
+            return '';
+    }
+
+    /**
+     * @return string
+     */
+    private function getSumSubtask()
+    {
+        $OUT = array();
+        /** @var ProducteevTask $this */
+        foreach ($this->subtasks as $subtask)
+            if ($this instanceof ProducteevTask)
+                $OUT[] = $subtask->title;
+        return implode(" and ", $OUT);
+    }
+
+    /**
+     * @return string
+     */
+    private function getSumResponsible()
+    {
+        $OUT = array();
+        /** @var ProducteevUser $user */
+        foreach ($this->responsibles as $user)
+            if ($user instanceof ProducteevUser)
+                $OUT[] = $user->name();
+        return implode(" and ", $OUT);
+    }
+
+    /**
+     * @return string
+     */
+    private function getSumLabel()
+    {
+        $OUT = array();
+        /** @var ProducteevLabel $user */
+        foreach ($this->labels as $label)
+            if ($label instanceof ProducteevLabel)
+                $OUT[] = $label->title;
+        return implode(" and ", $OUT);
+    }
+
+    /**
+     * @return string
+     */
+    private function getCreator()
+    {
+        if ($this->creator && $this->creator instanceof ProducteevUser) return $this->creator->name();
+        return '';
+    }
+
 }

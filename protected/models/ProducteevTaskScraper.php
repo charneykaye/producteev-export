@@ -13,6 +13,12 @@ class ProducteevTaskScraper
     /** @var string */
     protected $token = '';
 
+    /** @var string */
+    protected $basePath = '';
+
+    /** @var string */
+    protected $filename = '';
+
     /** @var array */
     protected $defaultVars = array(
         'sort' => 'deadline_time',
@@ -31,11 +37,15 @@ class ProducteevTaskScraper
 
     /**
      * @param string $token Required OAuth access_token
+     * @param string $basePath - NO trailing slash
+     * @param string $filename
      * @param array $vars
      */
-    public function __construct($token, $vars = array())
+    public function __construct($token, $basePath, $filename, $vars = array())
     {
         $this->token = $token;
+        $this->basePath = $basePath;
+        $this->filename = $filename;
         if (count($vars))
             foreach ($vars as $key => $val)
                 if (isset($this->defaultVars[$key]))
@@ -49,18 +59,19 @@ class ProducteevTaskScraper
      */
     public function scrape($verbose = false, $page = null)
     {
+        // Set if verbose
         if ($verbose)
             $this->verbose = true;
 
+        // Requires token
         if (!strlen($this->token))
             return false;
 
+        // Scrape one page (if specified, else all pages)
         if (is_numeric($page))
-            self::scrapePage($page);
-        else {
-            $page = 1;
-            while (self::scrapePage($page++)) ;
-        }
+            $this->scrapePage($page);
+        else
+            $this->scrapeAllPages();
 
         // If verbose, talk about it.
         if ($this->verbose)
@@ -68,6 +79,16 @@ class ProducteevTaskScraper
         ob_flush();
         flush();
 
+        // Write a CSV file
+        $this->writeCsv();
+
+        // If verbose, talk about it.
+        if ($this->verbose)
+            echo 'Wrote <a href="' .  $this->filename . '" target="_blank">' .  $this->filename . '</a>.<br/>';
+        ob_flush();
+        flush();
+
+        // Success!
         return true;
     }
 
@@ -120,6 +141,27 @@ class ProducteevTaskScraper
         return count($data->tasks);
     }
 
+    /**
+     *
+     */
+    protected function scrapeAllPages()
+    {
+        $page = 1;
+        while (self::scrapePage($page++)) ;
+    }
+
+    /**
+     *
+     */
+    public function writeCsv()
+    {
+        $fp = fopen($this->basePath . '/' . $this->filename, 'w');
+        fputcsv($fp, ProducteevTask::getHeader());
+        foreach ($this->tasks as $task)
+            if ($task instanceof ProducteevTask)
+                fputcsv($fp, $task->getData());
+        fclose($fp);
+    }
 
     /**
      * @param int $page

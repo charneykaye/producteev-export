@@ -68,8 +68,13 @@ div > ul > li {
     padding-bottom:20px;
 }
 
+.terminal a {
+    color:#e0e0e0;
+}
 
-
+.terminal a:hover {
+    color:#ffffff;
+}
 
 
 
