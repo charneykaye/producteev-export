@@ -4,26 +4,54 @@
  * ©2013 Outright Mental Inc.
  * All Rights Reserved
  */
-class ProducteevTask
+class ProducteevTask extends ProducteevObject
 {
-    public $id; // "520144d8fa4634b608000000"
-    public $created_at; // "2013-08-06T18:47:52+0000"
-    public $updated_at; // "2013-08-06T18:47:53+0000"
-    public $title; // "Submit the new iOS App"
-    public $priority; // 0
-    public $status; // 1
-    public $deadline; // "2013-08-07T07:00:00+0000"
-    public $deadline_timezone; // "PST"
-    public $creator; // ProducteevUser
-    public $responsibles = array(); // ProducteevUser[]
-    public $followers = array(); // ProducteevUser[]
-    public $project; // ProducteevProject
+    /** @var string */
+    public $title;
+
+    /** @var int */
+    public $priority;
+
+    /** @var int */
+    public $status;
+
+    /** @var string */
+    public $deadline;
+
+    /** @var string */
+    public $deadline_timezone;
+
+    /** @var ProducteevUser */
+    public $creator;
+
+    /** @var array ProducteevUser[] */
+    public $responsibles = array();
+
+    /** @var array ProducteevUser[] */
+    public $followers = array();
+
+    /** @var ProducteevProject */
+    public $project; // ProducteevObject
+
+    /** @var ProducteevLabel[] */
     public $labels = array(); // array()
+
+    /** @var ProducteevSubtask[]  */
     public $subtasks = array(); // array()
+
+    /** @var int */
     public $notes_count; // 0
+
+    /** @var bool */
     public $allday; // true,
+
+    /** @var ing */
     public $reminder; // 0
+
+    /** @var ing */
     public $permissions; // 2047
+
+    /** @var string */
     public $deadline_status; // "upcoming"
 
     /**
@@ -31,21 +59,13 @@ class ProducteevTask
      */
     function __construct($data = null)
     {
-        if ($data)
-            $this->setData($data);
-    }
-
-    /**
-     * @param array|object $data
-     */
-    protected function setData($data)
-    {
-        if (is_object($data))
-            $data = get_object_vars($data);
-        if (is_array($data))
-            foreach ($data as $key => $val)
-                if (property_exists($this, $key))
-                    $this->$key = $val;
+        $this->setData($data);
+        $this->extendMany('subtasks','ProducteevSubtask');
+        $this->extendMany('labels','ProducteevLabel');
+        $this->extendOne('creator','ProducteevUser');
+        $this->extendOne('project','ProducteevProject');
+        $this->extendMany('responsibles','ProducteevUser');
+        $this->extendMany('followers','ProducteevUser');
     }
 
     /**

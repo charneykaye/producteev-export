@@ -28,7 +28,7 @@ $app = new App();
     <link rel="favicon" href="favicon.ico">
     <style>
         body {
-            padding-top: 50px;
+            padding-top: 100px;
             padding-bottom: 20px;
         }
     </style>
@@ -83,24 +83,36 @@ $app = new App();
         </form>
     </div>
     <!--/.navbar-collapse -->
+    <?php include(__DIR__ . '/protected/views/task-header.php'); ?>
 </div>
 
-<div class="row-fluid">
+<div class="row-fluid terminal">
     <div class="col-md-12">
-        <?php $app->taskScraper->scrape(true); ?>
+        <?php $app->taskScraper->scrape(true, Util::requestVar('page')); ?>
     </div>
+    <div class="clearfix">&nbsp;</div>
 </div>
-<div class="clearfix">&nbsp;</div>
 
 <?php
-if (count($app->taskScraper->tasks)):
+if (count($app->taskScraper->tasks)) {
+    /**
+     * We have tasks: Display them in HTML using Twitter Bootstrap
+     */
     /** @var ProducteevTask $task */
     foreach ($app->taskScraper->tasks as $task)
         if ($task instanceof ProducteevTask)
             include(__DIR__ . '/protected/views/task.php');
         else
             echo '<div class="row task"><div class="col-md-12">BAD DATA:<br/>' . var_export($task, true) . '</div></div>';
-else: ?>
+    ?>
+
+<?php
+} else {
+    /**
+     * NO tasks: Display Description & Instructions
+     */
+    ?>
+
     <div class="row-fluid">
         <div class="col-md-6 description">
             <?php echo App::PROJECT_DESCRIPTION; ?>
@@ -110,7 +122,8 @@ else: ?>
             <?php echo App::PROJECT_INSTRUCTIONS; ?>
         </div>
     </div>
-<?php endif; ?>
+
+<?php } ?>
 
 <div class="clearfix">&nbsp;</div>
 <div class="row-fluid">

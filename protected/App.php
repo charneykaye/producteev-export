@@ -5,8 +5,12 @@
  * All Rights Reserved
  */
 require(__DIR__ . '/components/Util.php');
-require(__DIR__ . '/models/ProducteevTaskScraper.php');
-require(__DIR__ . '/models/ProducteevTask.php');
+require(__DIR__ . '/components/ProducteevObject.php');
+
+/**
+ * Require all models
+ */
+Util::requireAllPhpFilesInDir(__DIR__ . '/models/');
 
 class App
 {
@@ -32,6 +36,7 @@ class App
      */
     public function __construct()
     {
+        ob_start();
         $this->access_token = Util::requestVar('access_token');
         $this->taskScraper = new ProducteevTaskScraper($this->access_token);
     }

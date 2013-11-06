@@ -31,10 +31,15 @@ class ProducteevTaskScraper
 
     /**
      * @param string $token Required OAuth access_token
+     * @param array $vars
      */
-    public function __construct($token)
+    public function __construct($token, $vars = array())
     {
         $this->token = $token;
+        if (count($vars))
+            foreach ($vars as $key => $val)
+                if (isset($this->defaultVars[$key]))
+                    $this->defaultVars[$key] = $val;
     }
 
     /**
@@ -42,7 +47,7 @@ class ProducteevTaskScraper
      * @var int $page optional
      * @return bool;
      */
-    public function scrape($verbose = false, $page = 1)
+    public function scrape($verbose = false, $page = null)
     {
         if ($verbose)
             $this->verbose = true;
@@ -50,39 +55,30 @@ class ProducteevTaskScraper
         if (!strlen($this->token))
             return false;
 
-//        while (self::scrapeUrl(self::buildQueryURI($page++))) ;
-        self::scrapeUrl(self::buildQueryURI($page));
+        if (is_numeric($page))
+            self::scrapePage($page);
+        else {
+            $page = 1;
+            while (self::scrapePage($page++)) ;
+        }
 
         return true;
     }
 
-
     /**
      * @param int $page
-     * @return string
-     */
-    protected function buildQueryURI($page)
-    {
-        $pairs = array();
-        foreach (array_merge(
-                     $this->defaultVars,
-                     array('page' => $page)
-                 ) as $key => $val)
-            $pairs[] = urlencode($key) . '=' . urlencode($val);
-        if (count($pairs))
-            return $this->url . '?' . implode('&', $pairs);
-        else return $this->url;
-    }
-
-    /**
-     * @param string $url
      * @param $vars
      * @return int
      */
-    protected function scrapeUrl($url, $vars = array())
+    protected function scrapePage($page, $vars = array())
     {
+        // If verbose, talk about it.
+        if ($this->verbose)
+            echo 'cURL page ' . $page . '...';
+        ob_flush();
+
         // Implement cURL to talk to Producteev API
-        $ch = curl_init($url);
+        $ch = curl_init(self::buildQueryURI($page));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($vars));
@@ -106,7 +102,32 @@ class ProducteevTaskScraper
         // Add all tasks and return count
         foreach ($data->tasks as $toAdd)
             $this->tasks[] = new ProducteevTask($toAdd);
+
+        // If verbose, talk about it.
+        if ($this->verbose)
+            echo 'scraped ' . count($data->tasks) . ' tasks.<br/>';
+        ob_flush();
+
+        // Return count;
         return count($data->tasks);
+    }
+
+
+    /**
+     * @param int $page
+     * @return string
+     */
+    protected function buildQueryURI($page)
+    {
+        $pairs = array();
+        foreach (array_merge(
+                     $this->defaultVars,
+                     array('page' => $page)
+                 ) as $key => $val)
+            $pairs[] = urlencode($key) . '=' . urlencode($val);
+        if (count($pairs))
+            return $this->url . '?' . implode('&', $pairs);
+        else return $this->url;
     }
 
     /**

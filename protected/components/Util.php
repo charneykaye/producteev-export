@@ -450,45 +450,13 @@ class Util
     }
 
     /**
-     * download image from url and return it as a standardized image object
-     * @param string $url
-     * @return array|bool
+     * returns the input variable print_r expanded with line breaks and spaces converted for html
+     * @param type $var
+     * @return mixed
      */
-    static public function downloadImageFromUrl($url)
+    static public function debugHtml($var)
     {
-        // get bonafide temp file name
-        $temp_filename = tempnam(Yii::app()->basePath . "/runtime/", "dl_");
-        chmod($temp_filename, 0755);
-
-        // grab cURL
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_BINARYTRANSFER, 1);
-        $rawdata = curl_exec($ch);
-        curl_close($ch);
-
-        // push raw data to filesystem
-        $fp = fopen($temp_filename, 'wb');
-        fwrite($fp, $rawdata);
-        fclose($fp);
-
-        // check file size
-        $file_size = filesize($temp_filename);
-        if (!($file_size > 0))
-            return false;
-
-        // use imagemagick to get information on downloaded image
-        $image = Yii::app()->image->load($temp_filename);
-
-        // return standard image-upload style array:
-        return array(
-            "name" => "image." . $image->ext,
-            "type" => $image->mime,
-            "tmp_name" => $temp_filename,
-            "error" => "UPLOAD_ERR_OK",
-            "size" => $file_size,
-        );
+        return str_replace(array("\n", "\r", " "), array("<br/>", "<br/>", "&nbsp;"), print_r($var, true));
     }
 
     /**
@@ -848,39 +816,6 @@ class Util
     }
 
     /**
-     * @param $filename
-     * @return string
-     */
-    static public function getUploadPath($filename)
-    {
-        return Yii::getPathOfAlias('webroot') . '/uploads/' . $filename;
-    }
-
-    /**
-     * @param $filename
-     * @param bool $refresh
-     * @return string
-     */
-    static public function getUploadURL($filename, $refresh = false)
-    {
-        if ($refresh)
-            return Yii::app()->baseUrl . '/uploads/' . $filename . '?random=' . rand(0, 999999);
-        else
-            return Yii::app()->baseUrl . '/uploads/' . $filename;
-    }
-
-    /**
-     * @param string $filename
-     * @param null|mixed $return
-     * @return mixed|null
-     */
-    static public function unlinkUploadAndReturn($filename, $return = null)
-    {
-        @unlink(Util::getUploadPath($filename));
-        return $return;
-    }
-
-    /**
      * @param $url
      * @return mixed
      */
@@ -1034,19 +969,6 @@ class Util
     }
 
     /**
-     * @return string
-     */
-    public static function absoluteHomeUrl()
-    {
-        $url = Yii::app()->getHomeUrl();
-        if (is_array($url))
-            $url = $url[0];
-        if (!is_string($url))
-            return Yii::app()->baseUrl;
-        return Yii::app()->createAbsoluteUrl($url);
-    }
-
-    /**
      * @param $arr
      * @return mixed
      */
@@ -1069,5 +991,20 @@ class Util
             $OUT[$key] = $val;
         return $OUT;
     }
+
+    /**
+     * @param string $dir
+     */
+    public static function requireAllPhpFilesInDir($dir)
+    {
+        // If no trailing slash, add one.
+        if (!preg_match('/\//', $dir))
+            $dir .= '/';
+        foreach (scandir($dir) as $filename)
+            if (preg_match('/\.php$/', $filename))
+                /** @noinspection PhpIncludeInspection */
+                require($dir . $filename);
+    }
+
 
 }

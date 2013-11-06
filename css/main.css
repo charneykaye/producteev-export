@@ -1,47 +1,72 @@
 .task {
     display: inline-block;
-    width:100%;
-    padding-top:2px;
-    margin-top:10px;
-    font-size:10pt;
-    border-top:1px solid;
+    width: 100%;
+    padding-top: 2px;
+    margin-top: 10px;
+    font-size: 10pt;
+    border-top: 1px solid #d0d0d0;
 }
 
 .task.active {
-    opacity:1.0;
-    border-top-color:  #c9c9c9;
+    opacity: 1.0;
 }
 
 .task.done {
-    opacity:0.33;
-    border-top-color:  #e0e0e0;
+    opacity: 0.33;
 }
 
 .task .deadline {
-    font-size:8pt;
+    font-size: 8pt;
+}
+
+.task .deadline_status_late {
+    color: red;
+}
+
+.header {
+    background-color: #666;
+    color: #fff;
+}
+
+.header .task {
+    border-top-style: none;
 }
 
 .instructions {
-    font-weight:bold;
-    padding-top:20px;
-    font-size:20pt;
-    text-align:right;
+    font-weight: bold;
+    padding-top: 20px;
+    font-size: 20pt;
+    text-align: right;
 }
 
 .description {
-    padding-top:20px;
-    font-size:20pt;
-    text-align:left;
+    padding-top: 20px;
+    font-size: 20pt;
+    text-align: left;
 }
 
 .description .link {
-    font-size:12pt;
-    color:#999999;
+    font-size: 12pt;
+    color: #999999;
 }
 
+div > ul {
+    padding-left: 0;
+}
 
+div > ul > li {
+    list-style: none;
+    line-height: 1em;
+    margin-bottom: 1em;
+}
 
-
+.terminal {
+    background: #000;
+    color: #ffff00;
+    font-family: monospace;
+    padding-top:30px;
+    padding-bottom:20px;
+}
 
 
 
