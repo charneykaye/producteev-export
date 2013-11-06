@@ -82,10 +82,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ProducteevTaskScraper.php" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="ProducteevTaskScraper.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="79" column="0" selection-start="1769" selection-end="1786" vertical-scroll-proportion="0.21198668" vertical-offset="1152" max-vertical-offset="2584">
+                <state line="65" column="27" selection-start="1530" selection-end="1530" vertical-scroll-proportion="-23.038462" vertical-offset="506" max-vertical-offset="2686">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="6" column="6" selection-start="228" selection-end="228" vertical-scroll-proportion="0.110032365" vertical-offset="0" max-vertical-offset="927">
                   <folding />
                 </state>
               </provider>
@@ -95,10 +104,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="0.627451" vertical-offset="1717" max-vertical-offset="2584">
+                <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="-20.923077" vertical-offset="1717" max-vertical-offset="2584">
                   <folding>
                     <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <marker date="1383720658495" expanded="true" signature="1149:1401" placeholder="..." />
@@ -147,10 +156,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ProducteevSubtask.php" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="ProducteevSubtask.php" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/protected/models/ProducteevSubtask.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="3" selection-start="113" selection-end="113" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="833">
+                <state line="5" column="3" selection-start="113" selection-end="113" vertical-scroll-proportion="0.09659091" vertical-offset="0" max-vertical-offset="880">
                   <folding />
                 </state>
               </provider>
@@ -199,7 +208,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/protected/components/Util.php" />
         <option value="$PROJECT_DIR$/protected/models/ProducteevObject.php" />
         <option value="$PROJECT_DIR$/protected/models/ProducteevSubtask.php" />
         <option value="$PROJECT_DIR$/protected/views/subtask.php" />
@@ -215,6 +223,7 @@
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/protected/views/task-csv.php" />
         <option value="$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -426,13 +435,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protected/models/ProducteevSubtask.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="3" selection-start="113" selection-end="113" vertical-scroll-proportion="-3.2692308" vertical-offset="0" max-vertical-offset="833">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/components/ProducteevObject.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="22" selection-start="136" selection-end="136" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="1649">
@@ -450,13 +452,6 @@
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/json.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="80" column="9" selection-start="2485" selection-end="2485" vertical-scroll-proportion="-17.884615" vertical-offset="895" max-vertical-offset="3655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="57" selection-end="220" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
           <folding />
         </state>
       </provider>
@@ -523,7 +518,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="0.627451" vertical-offset="1717" max-vertical-offset="2584">
+        <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="-20.923077" vertical-offset="1717" max-vertical-offset="2584">
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1383720658495" expanded="true" signature="1149:1401" placeholder="..." />
@@ -535,9 +530,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/ProducteevSubtask.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="3" selection-start="113" selection-end="113" vertical-scroll-proportion="0.09659091" vertical-offset="0" max-vertical-offset="880">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="1769" selection-end="1786" vertical-scroll-proportion="0.21198668" vertical-offset="1152" max-vertical-offset="2584">
+        <state line="65" column="27" selection-start="1530" selection-end="1530" vertical-scroll-proportion="-23.038462" vertical-offset="506" max-vertical-offset="2686">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="6" selection-start="228" selection-end="228" vertical-scroll-proportion="0.110032365" vertical-offset="0" max-vertical-offset="927">
           <folding />
         </state>
       </provider>

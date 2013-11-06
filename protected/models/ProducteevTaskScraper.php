@@ -62,6 +62,12 @@ class ProducteevTaskScraper
             while (self::scrapePage($page++)) ;
         }
 
+        // If verbose, talk about it.
+        if ($this->verbose)
+            echo 'Scraped total ' . count($this->tasks) . ' tasks.<br/>';
+        ob_flush();
+        flush();
+
         return true;
     }
 
