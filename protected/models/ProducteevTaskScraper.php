@@ -76,6 +76,7 @@ class ProducteevTaskScraper
         if ($this->verbose)
             echo 'cURL page ' . $page . '...';
         ob_flush();
+        flush();
 
         // Implement cURL to talk to Producteev API
         $ch = curl_init(self::buildQueryURI($page));
@@ -107,6 +108,7 @@ class ProducteevTaskScraper
         if ($this->verbose)
             echo 'scraped ' . count($data->tasks) . ' tasks.<br/>';
         ob_flush();
+        flush();
 
         // Return count;
         return count($data->tasks);

@@ -85,7 +85,7 @@
           <file leaf-file-name="ProducteevTaskScraper.php" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="77" column="19" selection-start="1768" selection-end="1768" vertical-scroll-proportion="-0.1653718" vertical-offset="1458" max-vertical-offset="2550">
+                <state line="79" column="0" selection-start="1769" selection-end="1786" vertical-scroll-proportion="0.21198668" vertical-offset="1152" max-vertical-offset="2584">
                   <folding />
                 </state>
               </provider>
@@ -98,7 +98,7 @@
           <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="116" column="42" selection-start="4235" selection-end="4235" vertical-scroll-proportion="0.29411766" vertical-offset="1717" max-vertical-offset="2584">
+                <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="0.627451" vertical-offset="1717" max-vertical-offset="2584">
                   <folding>
                     <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <marker date="1383720658495" expanded="true" signature="1149:1401" placeholder="..." />
@@ -212,9 +212,9 @@
         <option value="$PROJECT_DIR$/protected/models/ProducteevUser.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/protected/App.php" />
-        <option value="$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php" />
         <option value="$PROJECT_DIR$/css/main.css" />
         <option value="$PROJECT_DIR$/protected/views/task-csv.php" />
+        <option value="$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php" />
       </list>
     </option>
   </component>
@@ -523,7 +523,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="42" selection-start="4235" selection-end="4235" vertical-scroll-proportion="0.29411766" vertical-offset="1717" max-vertical-offset="2584">
+        <state line="133" column="17" selection-start="4764" selection-end="4764" vertical-scroll-proportion="0.627451" vertical-offset="1717" max-vertical-offset="2584">
           <folding>
             <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1383720658495" expanded="true" signature="1149:1401" placeholder="..." />
@@ -537,7 +537,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/ProducteevTaskScraper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="19" selection-start="1768" selection-end="1768" vertical-scroll-proportion="-0.1653718" vertical-offset="1458" max-vertical-offset="2550">
+        <state line="79" column="0" selection-start="1769" selection-end="1786" vertical-scroll-proportion="0.21198668" vertical-offset="1152" max-vertical-offset="2584">
           <folding />
         </state>
       </provider>
