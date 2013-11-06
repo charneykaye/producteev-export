@@ -1,4 +1,4 @@
-producteev-task-scraper-web
+Scrape All Producteev Tasks
 ===========================
 
 Fueled purely by a desire to export my tasks from Producteev and never look back,

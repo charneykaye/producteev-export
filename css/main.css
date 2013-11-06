@@ -21,9 +21,23 @@
     font-size:8pt;
 }
 
+.instructions {
+    font-weight:bold;
+    padding-top:20px;
+    font-size:20pt;
+    text-align:right;
+}
 
+.description {
+    padding-top:20px;
+    font-size:20pt;
+    text-align:left;
+}
 
-
+.description .link {
+    font-size:12pt;
+    color:#999999;
+}
 
 
 

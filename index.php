@@ -25,6 +25,7 @@ $app = new App();
     <meta name="viewport" content="width=device-width">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="favicon" href="favicon.ico">
     <style>
         body {
             padding-top: 50px;
@@ -49,7 +50,8 @@ $app = new App();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Producteev Task Scraper</a>
+        <a class="navbar-brand" href="#"><img src="apple-touch-icon-144x144-precomposed.png"
+                                              style="height:40px;width:40px"/> <?php echo App::PROJECT_NAME; ?></a>
     </div>
     <div class="navbar-collapse collapse">
         <!--
@@ -73,7 +75,8 @@ $app = new App();
         -->
         <form class="navbar-form navbar-right">
             <div class="form-group">
-                <input name="access_token" type="text" placeholder="access_token" class="form-control"
+                <input size="60" name="access_token" type="text" placeholder="paste access_token here"
+                       class="form-control"
                        value="<?php echo $app->access_token; ?>">
             </div>
             <button type="submit" class="btn btn-success">Scrape</button>
@@ -82,29 +85,43 @@ $app = new App();
     <!--/.navbar-collapse -->
 </div>
 
-<div class="row">
+<div class="row-fluid">
     <div class="col-md-12">
         <?php $app->taskScraper->scrape(true); ?>
     </div>
 </div>
+<div class="clearfix">&nbsp;</div>
 
 <?php
+if (count($app->taskScraper->tasks)):
+    /** @var ProducteevTask $task */
+    foreach ($app->taskScraper->tasks as $task)
+        if ($task instanceof ProducteevTask)
+            include(__DIR__ . '/protected/views/task.php');
+        else
+            echo '<div class="row task"><div class="col-md-12">BAD DATA:<br/>' . var_export($task, true) . '</div></div>';
+else: ?>
+    <div class="row-fluid">
+        <div class="col-md-6 description">
+            <?php echo App::PROJECT_DESCRIPTION; ?>
+            <a class="link" target="_blank" href="<?php echo App::PROJECT_URL; ?>"><?php echo App::PROJECT_URL; ?></a>
+        </div>
+        <div class="col-md-6 instructions">
+            <?php echo App::PROJECT_INSTRUCTIONS; ?>
+        </div>
+    </div>
+<?php endif; ?>
 
-/** @var ProducteevTask $task and automatically skips this block if none */
-foreach ($app->taskScraper->tasks as $task)
-    if ($task instanceof ProducteevTask)
-        include(__DIR__ . '/protected/views/task.php');
-    else
-        echo '<div class="row task"><div class="col-md-12">BAD DATA:<br/>' . var_export($task, true) . '</div></div>';
+<div class="clearfix">&nbsp;</div>
+<div class="row-fluid">
+    <div class="col-md-12">
+        <hr>
+        <footer>
+            <p>&copy; Outright Mental Inc. <?php echo date('Y'); ?></p>
+        </footer>
+    </div>
+</div>
 
-?>
-
-<hr>
-
-<footer>
-    <p>&copy; Outright Mental Inc. <?php echo date('Y'); ?></p>
-</footer>
-</div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
