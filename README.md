@@ -4,7 +4,7 @@ Export All Producteev Tasks to CSV
 Peace out y'all; I'm gone!
 --------------------------
 
-Producteev, it's been real. 3 years now. But since Jive bought you, te fuiste de culo!
+Producteev, it's been real. 3 years now. But since Jive bought you, it's been downhill!
 
 Fueled purely by a desire to export my tasks from Producteev and never look back, I've been forced to build my own API consumer in lieu of a proper Export feature.  Naturally the code is yours free if you want it:
 
